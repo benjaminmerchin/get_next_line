@@ -45,3 +45,4 @@ int get_next_line(int fd, char **line)
 
 
 // questions a elucider : free les lignes ?
+// free le buff si ret = 0 ?
