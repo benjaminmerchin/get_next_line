@@ -30,7 +30,10 @@ int get_next_line(int fd, char **line)
 		{
 			ret = read(fd, buff, BUFFER_SIZE);
 			if (ret == 0)
+			{
+				free(buff);
 				return (0);
+			}
 			if (ret == -1)
 				return (-1);
 			buff[ret + 1] = '\0';
