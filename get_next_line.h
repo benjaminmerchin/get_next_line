@@ -11,6 +11,6 @@
 
 int get_next_line(int fd, char **line);
 int ft_strlen(char *str);
-char *ft_strjoin(char *s1, char *s2, int *v_bool, int *curs, int *v_b_1);
+char *ft_strjoin(char *s1, char *s2, int *v_bool, int *curs, int *v_b_1, int *ret);
 
 #endif
