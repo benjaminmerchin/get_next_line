@@ -1,7 +1,20 @@
 #include "get_next_line.h"
 
+int ft_strlennn(char *str)
+{
+	int i;
 
+	i = 0;
+	while (str[i])
+		i++;
+	return (i);
+}
 
+void ft_putstr(char *str)
+{
+	write(1, str, ft_strlennn(str));
+	write(1, "\n", 1);
+}
 
 int main(int ac, char **av)
 {
@@ -11,7 +24,6 @@ int main(int ac, char **av)
 	char *line;
 
 	i = 0;
-	(void)av;
 	line = NULL;
 	if (ac != 2)
 		return (0);
@@ -20,14 +32,11 @@ int main(int ac, char **av)
 		write(2, "OpenError\n", 10);
 		return (0);
 	}
-	while (i++ < 30)
+	while ((retour = get_next_line(fd, &line)) == 1)
 	{
-		if ((retour = get_next_line(fd, &line)) == 0)
-			break ;
-		printf("%s\n", line);
+		ft_putstr(line);
 		free(line);
-	//	printf("---------------\n");
 	}
-//	printf("%d\n%s\n", retour, *line);
+	}
 	return (0);
 }
