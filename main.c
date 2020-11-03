@@ -36,7 +36,11 @@ int main(int ac, char **av)
 	{
 		ft_putstr(line);
 		free(line);
+		i++;
+		if (i == 10)
+			break ;
+//		write(1, "1", 1);
 	}
-	}
+//	ft_putstr(line);
 	return (0);
 }
