@@ -6,7 +6,7 @@
 /*   By: bmerchin <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/11/02 03:32:36 by bmerchin          #+#    #+#             */
-/*   Updated: 2020/11/04 01:44:27 by bmerchin         ###   ########.fr       */
+/*   Updated: 2020/11/04 02:09:04 by bmerchin         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -40,22 +40,22 @@ char	*ft_strjoin(char *s1, char *s2, t_struct *data)
 	return (str);
 }
 
-int get_next_line(int fd, char **line)
+int		get_next_line(int fd, char **line)
 {
 	static t_struct data;
 
 	if (read(fd, data.buff, 0) < 0 || fd < 0 || fd > 10240 || line == NULL)
-    	return (-1);	
+		return (-1);
 	*line = (char *)malloc(sizeof(char));
+	if (*line == NULL)
+		return (-1);
 	*line[0] = '\0';
 	if (ft_strlen(data.buff + data.curs) != ft_strlenn(data.buff + data.curs))
 	{
-		/*je renvoie strjoin de line et ce qu'il faut du buffer puis j'exit*/
 		*line = ft_strjoin(*line, data.buff + data.curs, &data);
 		data.curs += 1;
 		return (1);
 	}
-	/* on ne lit que si c'est le debut du fichier */
 	if (data.ret == 0)
 	{
 		data.ret = read(fd, data.buff, BUFFER_SIZE);
@@ -63,18 +63,17 @@ int get_next_line(int fd, char **line)
 	}
 	while (data.ret > 0)
 	{
-		if (/* il y a une newline sur le buffer */ft_strlen(data.buff + data.curs) != ft_strlenn(data.buff + data.curs))
+		if (ft_strlen(data.buff + data.curs) !=
+		ft_strlenn(data.buff + data.curs))
 		{
-			/*je renvoie strjoin de line et ce qu'il faut du buffer puis j'exit*/
 			*line = ft_strjoin(*line, data.buff + data.curs, &data);
+			if (*line == NULL)
+				return (-1);
 			data.curs += 1;
 			return (1);
 		}
-		if (/* il reste des char dans le buffer */data.curs < data.ret)
-		{
-			/*je strjoin a mon line */;
+		if (data.curs < data.ret)
 			*line = ft_strjoin(*line, data.buff + data.curs, &data);
-		}
 		data.ret = read(fd, data.buff, BUFFER_SIZE);
 		data.buff[data.ret] = '\0';
 		data.curs = 0;
