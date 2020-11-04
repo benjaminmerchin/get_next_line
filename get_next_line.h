@@ -6,7 +6,7 @@
 /*   By: bmerchin <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/11/04 02:02:12 by bmerchin          #+#    #+#             */
-/*   Updated: 2020/11/04 02:02:50 by bmerchin         ###   ########.fr       */
+/*   Updated: 2020/11/04 02:29:54 by bmerchin         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -29,6 +29,7 @@ typedef struct	s_struct
 }				t_struct;
 
 int				get_next_line(int fd, char **line);
+int				get_next_line2(int fd, char **line, t_struct *data);
 int				ft_strlen(char *str);
 int				ft_strlenn(char *str);
 char			*ft_strjoin(char *s1, char *s2, t_struct *data);

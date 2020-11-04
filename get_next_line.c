@@ -6,7 +6,7 @@
 /*   By: bmerchin <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/11/02 03:32:36 by bmerchin          #+#    #+#             */
-/*   Updated: 2020/11/04 02:09:04 by bmerchin         ###   ########.fr       */
+/*   Updated: 2020/11/04 02:28:44 by bmerchin         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -40,6 +40,28 @@ char	*ft_strjoin(char *s1, char *s2, t_struct *data)
 	return (str);
 }
 
+int		get_next_line2(int fd, char **line, t_struct *data)
+{
+	while (data->ret > 0)
+	{
+		if (ft_strlen(data->buff + data->curs) !=
+		ft_strlenn(data->buff + data->curs))
+		{
+			*line = ft_strjoin(*line, data->buff + data->curs, data);
+			if (*line == NULL)
+				return (-1);
+			data->curs += 1;
+			return (1);
+		}
+		if (data->curs < data->ret)
+			*line = ft_strjoin(*line, data->buff + data->curs, data);
+		data->ret = read(fd, data->buff, BUFFER_SIZE);
+		data->buff[data->ret] = '\0';
+		data->curs = 0;
+	}
+	return (0);
+}
+
 int		get_next_line(int fd, char **line)
 {
 	static t_struct data;
@@ -61,22 +83,5 @@ int		get_next_line(int fd, char **line)
 		data.ret = read(fd, data.buff, BUFFER_SIZE);
 		data.buff[data.ret] = '\0';
 	}
-	while (data.ret > 0)
-	{
-		if (ft_strlen(data.buff + data.curs) !=
-		ft_strlenn(data.buff + data.curs))
-		{
-			*line = ft_strjoin(*line, data.buff + data.curs, &data);
-			if (*line == NULL)
-				return (-1);
-			data.curs += 1;
-			return (1);
-		}
-		if (data.curs < data.ret)
-			*line = ft_strjoin(*line, data.buff + data.curs, &data);
-		data.ret = read(fd, data.buff, BUFFER_SIZE);
-		data.buff[data.ret] = '\0';
-		data.curs = 0;
-	}
-	return (0);
+	return (get_next_line2(fd, line, &data));
 }
