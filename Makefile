@@ -2,7 +2,7 @@ NAME	=	gnl
 CC		=	gcc
 OBJ		=	main.c get_next_line.c get_next_line_utils.c
 COMP 	=	$(OBJ:.c=.o)
-BUFFER	=	-D BUFFER_SIZE=10
+BUFFER	=	-D BUFFER_SIZE=1320
 CFLAGS	=	-Wall -Wextra -Werror $(BUFFER)
 HEADERS	=	includes
 
