@@ -6,7 +6,7 @@
 /*   By: bmerchin <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/11/02 03:32:36 by bmerchin          #+#    #+#             */
-/*   Updated: 2020/11/04 08:33:21 by bmerchin         ###   ########.fr       */
+/*   Updated: 2020/11/04 19:21:01 by bmerchin         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -70,7 +70,7 @@ int		get_next_line2(int fd, char **line, t_struct *data)
 
 int		get_next_line(int fd, char **line)
 {
-	static t_struct data[10240];
+	static t_struct data[10241];
 
 	if (read(fd, data[fd].buff, 0) < 0 || fd < 0 || fd > 10240 || line == NULL)
 		return (-1);
