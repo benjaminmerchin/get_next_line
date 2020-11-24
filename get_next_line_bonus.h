@@ -6,7 +6,7 @@
 /*   By: bmerchin <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/11/04 02:02:12 by bmerchin          #+#    #+#             */
-/*   Updated: 2020/11/04 02:44:31 by bmerchin         ###   ########.fr       */
+/*   Updated: 2020/11/24 20:52:51 by bmerchin         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -33,5 +33,7 @@ int				get_next_line2(int fd, char **line, t_struct *data);
 int				ft_strlen(char *str);
 int				ft_strlenn(char *str);
 char			*ft_strjoin(char *s1, char *s2, t_struct *data);
+char			*free_null(char *s1);
+int				free_int(char **line);
 
 #endif

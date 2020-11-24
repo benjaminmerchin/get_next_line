@@ -6,7 +6,7 @@
 /*   By: bmerchin <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/11/02 03:32:36 by bmerchin          #+#    #+#             */
-/*   Updated: 2020/11/04 19:21:01 by bmerchin         ###   ########.fr       */
+/*   Updated: 2020/11/24 20:58:21 by bmerchin         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,7 +23,7 @@ char	*ft_strjoin(char *s1, char *s2, t_struct *data)
 	if (!s1 || !s2)
 		return (NULL);
 	if (!(str = malloc(sizeof(char) * (ft_strlen(s1) + ft_strlenn(s2) + 1))))
-		return (NULL);
+		return (free_null(s1));
 	while (s1[i])
 	{
 		str[i] = s1[i];
@@ -61,7 +61,7 @@ int		get_next_line2(int fd, char **line, t_struct *data)
 		}
 		data->ret = read(fd, data->buff, BUFFER_SIZE);
 		if (data->ret < 0)
-			return (-1);
+			return (free_int(line));
 		data->buff[data->ret] = '\0';
 		data->curs = 0;
 	}
@@ -91,7 +91,7 @@ int		get_next_line(int fd, char **line)
 	{
 		data[fd].ret = read(fd, data[fd].buff, BUFFER_SIZE);
 		if (data[fd].ret < 0)
-			return (-1);
+			return (free_int(line));
 		data[fd].buff[data[fd].ret] = '\0';
 	}
 	return (get_next_line2(fd, line, &data[fd]));

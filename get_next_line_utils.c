@@ -6,13 +6,13 @@
 /*   By: bmerchin <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/11/04 00:25:45 by bmerchin          #+#    #+#             */
-/*   Updated: 2020/11/04 02:01:01 by bmerchin         ###   ########.fr       */
+/*   Updated: 2020/11/24 20:53:59 by bmerchin         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "get_next_line.h"
 
-int	ft_strlen(char *str)
+int		ft_strlen(char *str)
 {
 	int i;
 
@@ -24,7 +24,7 @@ int	ft_strlen(char *str)
 	return (i);
 }
 
-int	ft_strlenn(char *str)
+int		ft_strlenn(char *str)
 {
 	int i;
 
@@ -34,4 +34,16 @@ int	ft_strlenn(char *str)
 	while (str[i] != '\0' && str[i] != '\n')
 		i++;
 	return (i);
+}
+
+char	*free_null(char *s1)
+{
+	free(s1);
+	return (NULL);
+}
+
+int		free_int(char **line)
+{
+	free(*line);
+	return (-1);
 }
